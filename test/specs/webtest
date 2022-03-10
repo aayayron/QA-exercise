@@ -1,0 +1,33 @@
+describe ('Go to search browser', () => {
+
+    it ('should go to google.com', async ()=>{
+        await browser.url('https://www.google.com/')
+        await expect (browser).toHaveUrl('https://www.google.com/')
+        
+    })
+})
+
+describe ('Search Maybank2u', ()=>{
+    
+    it ('should search Maybank2u', async ()=>{
+        const search= $("//input[@name='q']")
+    
+        await (await search).setValue('Maybank2u')
+        await browser.keys('Enter')
+    })
+})
+
+describe ('Click the first selection',()=>{
+    it ('should click the first selection', async ()=>{
+        const search= $("//a[@href='https://www.maybank2u.com.my/']")
+        await (await search).click()
+
+    })
+})
+
+describe ('Check the header text', ()=>{
+    it ('should have header', async ()=>{
+        const head= $("//div[@class='Header---intro-lead-in---3jqOk']")
+        await expect (head).toHaveText('Humanising Banking')   
+    })
+})
